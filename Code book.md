@@ -35,6 +35,95 @@ Transformation of the source "raw" dataset(s) into the desired dataset is accomp
     6. Add a column derived from the activity column to have a activity label
     7. Filter columns. The assignment description tells us to keep only those measurements corresponding to mean and std..After carefully looking throung the original codebook, we can find out that those column share a common pattern, and this pattern is that the have either the atom "mean()" or the atom "std()" in their names. So, in order to keep only those columns, we need to select (grep) in the dataset column names these regular expressions, columns for us: Activity and Subject:
 
-    8. Once we have our filtered columns, we can advance and rename variables (column names) to make our dataset more tidy. 
-    9. At this point, we have a dataset corresponding to steps 1-4 of the assignment, we can go further and make necessary transformations to also accomplish step 5.
-    10. In order to do that, we need to average all values grouping by subject/activity. 
+   8. Once we have our filtered columns, we can advance and rename variables (column names) to make our dataset more tidy. 
+   9. At this point, we have a dataset corresponding to steps 1-4 of the assignment, we can go further and make necessary transformations to also accomplish step 5.
+   10. In order to do that, we need to average all values grouping by subject/activity. 
+
+The variables
+
+Only all the variables estimated from mean and standard deviation in the tidy set were kept.
+
+mean(): Mean value
+std(): Standard deviation
+
+The data were averaged based on subject and activity group.
+subjectId column is numbered sequentially from 1 to 30. activityType column has 6 types as listed below.
+
+WALKING
+WALKING_UPSTAIRS
+WALKING_DOWNSTAIRS
+SITTING
+STANDING
+LAYING
+
+
+The tidy data contains 6*30=180 rows each subject with different activity types and 69 coloumns (66 variables)
+"subjectId"
+"activityType"
+"activityId"
+"tBodyAcc-mean()-X"
+"tBodyAcc-mean()-Y"
+"tBodyAcc-mean()-Z"
+"tBodyAcc-std()-X"
+"tBodyAcc-std()-Y"
+"tBodyAcc-std()-Z"
+"tGravityAcc-mean()-X"
+"tGravityAcc-mean()-Y"
+"tGravityAcc-mean()-Z"
+"tGravityAcc-std()-X"
+"tGravityAcc-std()-Y"
+"tGravityAcc-std()-Z"
+"tBodyAccJerk-mean()-X"
+"tBodyAccJerk-mean()-Y"
+"tBodyAccJerk-mean()-Z"
+"tBodyAccJerk-std()-X"
+"tBodyAccJerk-std()-Y"
+"tBodyAccJerk-std()-Z"
+"tBodyGyro-mean()-X"
+"tBodyGyro-mean()-Y"
+"tBodyGyro-mean()-Z"
+"tBodyGyro-std()-X"
+"tBodyGyro-std()-Y"
+"tBodyGyro-std()-Z"
+"tBodyGyroJerk-mean()-X"
+"tBodyGyroJerk-mean()-Y"
+"tBodyGyroJerk-mean()-Z"
+"tBodyGyroJerk-std()-X"
+"tBodyGyroJerk-std()-Y"
+"tBodyGyroJerk-std()-Z"
+"tBodyAccMag-mean()"
+"tBodyAccMag-std()"
+"tGravityAccMag-mean()"
+"tGravityAccMag-std()"
+"tBodyAccJerkMag-mean()"
+"tBodyAccJerkMag-std()"
+"tBodyGyroMag-mean()"
+"tBodyGyroMag-std()"
+"tBodyGyroJerkMag-mean()"
+"tBodyGyroJerkMag-std()"
+"fBodyAcc-mean()-X"
+"fBodyAcc-mean()-Y"
+"fBodyAcc-mean()-Z"
+"fBodyAcc-std()-X"
+"fBodyAcc-std()-Y"
+"fBodyAcc-std()-Z"
+"fBodyAccJerk-mean()-X"
+"fBodyAccJerk-mean()-Y"
+"fBodyAccJerk-mean()-Z"
+"fBodyAccJerk-std()-X"
+"fBodyAccJerk-std()-Y"
+"fBodyAccJerk-std()-Z"
+"fBodyGyro-mean()-X"
+"fBodyGyro-mean()-Y"
+"fBodyGyro-mean()-Z"
+"fBodyGyro-std()-X"
+"fBodyGyro-std()-Y"
+"fBodyGyro-std()-Z"
+"fBodyAccMag-mean()"
+"fBodyAccMag-std()"
+"fBodyBodyAccJerkMag-mean()"
+"fBodyBodyAccJerkMag-std()"
+"fBodyBodyGyroMag-mean()"
+"fBodyBodyGyroMag-std()"
+"fBodyBodyGyroJerkMag-mean()"
+"fBodyBodyGyroJerkMag-std()"
