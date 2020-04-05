@@ -1,21 +1,40 @@
-Step 1:
-Loading data
-    -dl from coursera 
-    -unzip the repo
-    -put it in the Getting-and-Cleaning-Data repo in rStudio
-Reading data
-    -create df from the differents files in test and bind them
-    -create df from the differents files of train and bind them
-Merging test an train df to create 1 dataframe with all the data
+Codebook
 
-Step 2:
-Extract measurement of the mean and standard deviation
+This CodeBook updates the information found in the original "raw" dataset CodeBook from Samgung's UCI HAR team. It is the /UCI HAR Dataset/README.txt.
+ So, in order to fully understand this dataset, it is highly recommended to understand first what all the original measurements are all about.
 
-Step 3:
-Give descriptive name for each activity from features.txt file
+As a summary: the original dataset is obtained from measuring the activity on specific sensors on Samsung devices for 30 test subjects. For each one, a series of data is obtained; basically: acceleration and angular velocity (in each one of the XYZ axis). 
 
-Step 4:
-Label the data using the name from features_info.txt file
+Please note that, as explained in the corresponding (/UCI HAR Dataset/README.txt) file, after the whole processing, all values are normalized to [-1,1]. This fact has an important consequence, and it is that, despite original measurements where in "G" and "rad/s" units, normalized values no longer have units. 
 
-Step 5: 
-Create a tidy dataset and write it
+Source dataset(s), and transformations
+
+"RAW" origin data
+
+The origin dataset is composed by two series of data devised originally to train/test a Machine Learning system. Thus, the original "raw" data is decomposed in two subsets of three data sources each:
+    • Training dataset
+        ◦ Features ("X""), inputs.
+        ◦ Results ("Y"), outputs (activity code).
+        ◦ Subjects
+    • Test dataset
+        ◦ Features ("X""), inputs.
+        ◦ Results ("Y"), outputs (activity code.
+        ◦ Subjects
+Each "X" subset corresponds to 561 features derived from original raw measurements, and "subjects" give us an unique subject ID for each row (measurement)
+In order to make data more tidy, we must also use the activty labels instead of the activity codes. Activity labels can be found also in the original repository, in (/UCI HAR Dataset/activity_labels.txt).
+Transformations
+
+Transformation of the source "raw" dataset(s) into the desired dataset is accomplished by a series of steps:
+    1. Read activity labels (from /UCI HAR Dataset/activity_labels.txt) and add two labels: activity_id and subject
+    2. Read feature names (from /UCI HAR Dataset/features.txt)
+    3. Read  561 features lines from both train/test data (X_{train,test}.txt)
+        i. cbind each one of them with data from subjects (subject_{train,test}.txt)
+        ii. cbind each one of them with data from activities (y_{train,test}.txt)
+    4. Bind (rbind) both data sub-sets into one
+    5. Add column subject (from step 1)
+    6. Add a column derived from the activity column to have a activity label
+    7. Filter columns. The assignment description tells us to keep only those measurements corresponding to mean and std..After carefully looking throung the original codebook, we can find out that those column share a common pattern, and this pattern is that the have either the atom "mean()" or the atom "std()" in their names. So, in order to keep only those columns, we need to select (grep) in the dataset column names these regular expressions, columns for us: Activity and Subject:
+
+    8. Once we have our filtered columns, we can advance and rename variables (column names) to make our dataset more tidy. 
+    9. At this point, we have a dataset corresponding to steps 1-4 of the assignment, we can go further and make necessary transformations to also accomplish step 5.
+    10. In order to do that, we need to average all values grouping by subject/activity. 
